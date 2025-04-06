@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('/static/img/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    animation: fadeIn 1s ease forwards;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#timer {
+    font-size: 22px;
+    color: #FFD700;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    width: 80%;
+    max-width: 300px;
+    outline: none;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #00f2fe, #4facfe);
+}
+
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+
+.fade-out {
+    animation: fadeOut 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    #timer {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    input#activation-code {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    button.btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    #final-message h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+/* --- Оформление финального блока --- */
+
+#final-message {
+    display: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    margin-top: 20px;
+    animation: fadeIn 1s ease forwards;
+}
+
+@media (max-width: 480px) {
+    #final-message {
+        font-size: 18px;
+        padding: 15px;
+    }
+}
+
+canvas#fireworks {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
