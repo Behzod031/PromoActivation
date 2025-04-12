@@ -1,8 +1,7 @@
-/* Базовая стилизация */
 body {
     margin: 0;
     padding: 0;
-    background: url('/static/img/bg.jpg') no-repeat center center fixed;
+    background: url('../img/bg.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Arial', sans-serif;
     height: 100vh;
@@ -81,26 +80,11 @@ button:hover {
     to { opacity: 0; transform: scale(0.95); }
 }
 
-/* Финальное сообщение */
-#final-message {
-    display: none;
-    font-size: 24px;
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    margin-top: 20px;
-    animation: fadeIn 1s ease forwards;
-}
-
-/* Мобильная адаптация */
+/* Адаптация для мобильных */
 @media (max-width: 768px) {
     .container {
-        width: 95%;
-        padding: 25px;
+        width: 90%;
+        padding: 20px;
     }
 
     h1 {
@@ -111,6 +95,7 @@ button:hover {
     #timer {
         font-size: 18px;
         text-align: center;
+        margin-bottom: 20px;
     }
 
     input#activation-code {
@@ -121,7 +106,7 @@ button:hover {
     button.btn {
         width: 100%;
         padding: 15px;
-        font-size: 16px;
+        font-size: 18px;
     }
 
     #final-message h2 {
@@ -142,12 +127,26 @@ button:hover {
     }
 
     #final-message {
-        font-size: 16px;
+        font-size: 18px;
         padding: 15px;
     }
 }
 
-/* Fireworks */
+/* Финальное сообщение */
+#final-message {
+    display: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    margin-top: 20px;
+    animation: fadeIn 1s ease forwards;
+}
+
 canvas#fireworks {
     position: fixed;
     left: 0;
