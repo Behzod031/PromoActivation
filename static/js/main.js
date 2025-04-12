@@ -7,19 +7,23 @@ document.addEventListener("DOMContentLoaded", function() {
     const finalMessage = document.getElementById("final-message");
     const heading = document.getElementById("heading");
 
-    function startTimer(duration) {
-        let timer = duration, days, hours, minutes, seconds;
-        setInterval(function () {
-            days = parseInt(timer / 86400, 10);
-            hours = parseInt((timer % 86400) / 3600, 10);
-            minutes = parseInt((timer % 3600) / 60, 10);
-            seconds = parseInt(timer % 60, 10);
+    const DURATION = 7 * 24 * 60 * 60; // 7 дней в секундах
 
-            timerEl.textContent = `Vaqt: ${days} kun ${hours} soat ${minutes} min ${seconds} sec`;
-
-            if (--timer < 0) {
-                timer = 0;
+    function startTimer(seconds) {
+        let timer = seconds, days, hours, minutes, sec;
+        const interval = setInterval(() => {
+            if (timer <= 0) {
+                clearInterval(interval);
+                timerEl.textContent = "Aktsiya muddati tugadi!";
+                return;
             }
+            days = Math.floor(timer / 86400);
+            hours = Math.floor((timer % 86400) / 3600);
+            minutes = Math.floor((timer % 3600) / 60);
+            sec = Math.floor(timer % 60);
+
+            timerEl.textContent = `Vaqt: ${days} kun ${hours} soat ${minutes} min ${sec} sec`;
+            timer--;
         }, 1000);
     }
 
@@ -66,8 +70,9 @@ document.addEventListener("DOMContentLoaded", function() {
         animate();
     }
 
-    // Если клиент уже зарегистрирован, проверить и сразу показать соответствующий экран
     const savedClientId = localStorage.getItem("client_id");
+    const activationStart = localStorage.getItem("activationStart");
+
     if (savedClientId) {
         fetch("/register_participation", {
             method: "POST",
@@ -79,7 +84,6 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data.status === "already_registered") {
                 localStorage.setItem("client_id", data.client_id);
                 if (data.code !== "") {
-                    // Уже активирован, сразу показываем благодарность
                     heading.style.display = "none";
                     timerEl.style.display = "none";
                     participateBtn.style.display = "none";
@@ -87,18 +91,37 @@ document.addEventListener("DOMContentLoaded", function() {
                     finalMessage.classList.add("fade-in");
                     showFireworks();
                 } else {
-                    // Зарегистрирован, но ещё не активировал код
                     participateBtn.style.display = "none";
                     activateSection.style.display = "block";
                     activateSection.classList.add("fade-in");
-                    startTimer(7 * 24 * 60 * 60);
+
+                    // 🔁 Если есть дата старта — продолжаем отсчёт
+                    if (activationStart) {
+                        const elapsed = Math.floor((Date.now() - parseInt(activationStart)) / 1000);
+                        const remaining = DURATION - elapsed;
+                        if (remaining > 0) {
+                            startTimer(remaining);
+                        } else {
+                            timerEl.textContent = "Aktsiya muddati tugadi!";
+                        }
+                    } else {
+                        // fallback: запускаем заново
+                        localStorage.setItem("activationStart", Date.now().toString());
+                        startTimer(DURATION);
+                    }
                 }
             }
         });
     }
 
     participateBtn.addEventListener("click", function() {
+        // ✅ Сохраняем время начала, если его ещё нет
+        if (!localStorage.getItem("activationStart")) {
+            localStorage.setItem("activationStart", Date.now().toString());
+        }
+
         participateBtn.classList.add("fade-out");
+
         fetch("/register_participation", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -115,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
             participateBtn.style.display = "none";
             activateSection.style.display = "block";
             activateSection.classList.add("fade-in");
-            startTimer(7 * 24 * 60 * 60);
+            startTimer(DURATION);
             showFireworks();
         }, 1000);
     });
@@ -134,9 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         fetch("/check_code", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ code, client_id: clientId })
         })
         .then(response => response.json())
