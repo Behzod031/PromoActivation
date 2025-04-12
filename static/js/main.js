@@ -115,33 +115,46 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     participateBtn.addEventListener("click", function() {
-        // ✅ Сохраняем время начала, если его ещё нет
-        if (!localStorage.getItem("activationStart")) {
-            localStorage.setItem("activationStart", Date.now().toString());
+    participateBtn.classList.add("fade-out");
+
+    // ✅ Сохраняем дату начала, только если её нет
+    if (!localStorage.getItem("activationStart")) {
+        localStorage.setItem("activationStart", Date.now().toString());
+    }
+
+    fetch("/register_participation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ client_id: savedClientId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.client_id) {
+            localStorage.setItem("client_id", data.client_id);
+        }
+    });
+
+    setTimeout(() => {
+        participateBtn.style.display = "none";
+        activateSection.style.display = "block";
+        activateSection.classList.add("fade-in");
+
+        // ✅ Точное восстановление оставшегося времени
+        const start = parseInt(localStorage.getItem("activationStart"));
+        const now = Date.now();
+        const elapsed = Math.floor((now - start) / 1000);
+        const remaining = DURATION - elapsed;
+
+        if (remaining > 0) {
+            startTimer(remaining);
+        } else {
+            timerEl.textContent = "Aktsiya muddati tugadi!";
         }
 
-        participateBtn.classList.add("fade-out");
+        showFireworks();
+    }, 1000);
+});
 
-        fetch("/register_participation", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ client_id: savedClientId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.client_id) {
-                localStorage.setItem("client_id", data.client_id);
-            }
-        });
-
-        setTimeout(() => {
-            participateBtn.style.display = "none";
-            activateSection.style.display = "block";
-            activateSection.classList.add("fade-in");
-            startTimer(DURATION);
-            showFireworks();
-        }, 1000);
-    });
 
     activateBtn.addEventListener("click", function() {
         const code = codeInput.value.trim();
