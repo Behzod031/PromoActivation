@@ -1,3 +1,4 @@
+/* Базовая стилизация */
 body {
     margin: 0;
     padding: 0;
@@ -9,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     color: #fff;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .container {
@@ -21,6 +22,7 @@ body {
     max-width: 600px;
     width: 90%;
     animation: fadeIn 1s ease forwards;
+    margin-bottom: 20px;
 }
 
 h1 {
@@ -79,43 +81,7 @@ button:hover {
     to { opacity: 0; transform: scale(0.95); }
 }
 
-/* Адаптация для мобильных */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 24px;
-        text-align: center;
-    }
-
-    #timer {
-        font-size: 18px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    input#activation-code {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    button.btn {
-        width: 100%;
-        padding: 15px;
-        font-size: 18px;
-    }
-
-    #final-message h2 {
-        font-size: 20px;
-        text-align: center;
-    }
-}
-
-/* --- Оформление финального блока --- */
-
+/* Финальное сообщение */
 #final-message {
     display: none;
     font-size: 24px;
@@ -130,13 +96,58 @@ button:hover {
     animation: fadeIn 1s ease forwards;
 }
 
-@media (max-width: 480px) {
-    #final-message {
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    #timer {
         font-size: 18px;
+        text-align: center;
+    }
+
+    input#activation-code {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    button.btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    #final-message h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    input[type="text"],
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    #final-message {
+        font-size: 16px;
         padding: 15px;
     }
 }
 
+/* Fireworks */
 canvas#fireworks {
     position: fixed;
     left: 0;
