@@ -1,3 +1,4 @@
+/* 💻 ПК-фон по умолчанию */
 body {
     margin: 0;
     padding: 0;
@@ -9,7 +10,15 @@ body {
     justify-content: center;
     align-items: center;
     color: #fff;
-    overflow-x: hidden;
+    overflow: hidden;
+}
+
+/* 📱 Мобильный фон */
+@media (max-width: 768px) {
+    body {
+        background: url('../img/323.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
 }
 
 .container {
@@ -21,21 +30,18 @@ body {
     max-width: 600px;
     width: 90%;
     animation: fadeIn 1s ease forwards;
-    margin-bottom: 20px;
 }
 
 h1 {
     font-size: 32px;
     margin-bottom: 20px;
     color: #fff;
-    text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
 }
 
 #timer {
     font-size: 22px;
     color: #FFD700;
     margin-bottom: 20px;
-    text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
 }
 
 input[type="text"] {
@@ -46,7 +52,6 @@ input[type="text"] {
     width: 80%;
     max-width: 300px;
     outline: none;
-    font-size: 16px;
 }
 
 button {
@@ -83,65 +88,42 @@ button:hover {
     to { opacity: 0; transform: scale(0.95); }
 }
 
-/* Адаптация для мобильных */
+/* 📱 Адаптация для мобильных */
 @media (max-width: 768px) {
     .container {
-        background: rgba(0, 0, 0, 0.65); /* затемнение посильнее */
-        width: 95%;
-        padding: 25px;
+        width: 90%;
+        padding: 20px;
     }
 
     h1 {
         font-size: 24px;
         text-align: center;
-        text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
     }
 
     #timer {
         font-size: 18px;
         text-align: center;
         margin-bottom: 20px;
-        text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
     }
 
     input#activation-code {
         width: 100%;
         margin-bottom: 10px;
-        font-size: 16px;
-        padding: 14px;
     }
 
     button.btn {
         width: 100%;
-        padding: 16px;
+        padding: 15px;
         font-size: 18px;
     }
 
     #final-message h2 {
         font-size: 20px;
         text-align: center;
-        text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
     }
 }
 
-@media (max-width: 480px) {
-    h1 {
-        font-size: 20px;
-    }
-
-    input[type="text"],
-    button {
-        font-size: 15px;
-        padding: 12px;
-    }
-
-    #final-message {
-        font-size: 18px;
-        padding: 15px;
-    }
-}
-
-/* Финальное сообщение */
+/* --- Финальный блок --- */
 #final-message {
     display: none;
     font-size: 24px;
@@ -154,6 +136,13 @@ button:hover {
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
     margin-top: 20px;
     animation: fadeIn 1s ease forwards;
+}
+
+@media (max-width: 480px) {
+    #final-message {
+        font-size: 18px;
+        padding: 15px;
+    }
 }
 
 canvas#fireworks {
