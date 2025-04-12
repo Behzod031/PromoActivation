@@ -1,133 +1,156 @@
-/* Сброс */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* 💻 ПК-фон по умолчанию */
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  color: #333;
+    margin: 0;
+    padding: 0;
+    background: url('../img/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
 }
 
-/* Hero-секция */
-.hero {
-  height: 100vh;
-  background: url('/static/img/background.png') no-repeat center center/cover;
-  position: relative;
+/* 📱 Мобильный фон */
+@media (max-width: 768px) {
+    body {
+        background: url('../img/323.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
 }
 
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+.container {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    animation: fadeIn 1s ease forwards;
 }
 
-.hero-content {
-  text-align: center;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  max-width: 600px;
-  width: 100%;
-  animation: fadeInUp 0.6s ease forwards;
-  opacity: 0;
-  transform: translateY(30px);
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #fff;
 }
 
-.hero-content h1 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
-  margin-bottom: 20px;
-  line-height: 1.3;
-  text-align: center;
+#timer {
+    font-size: 22px;
+    color: #FFD700;
+    margin-bottom: 20px;
 }
 
-/* Форма */
-.hero-form .form-group {
-  margin-bottom: 15px;
-  text-align: left;
+input[type="text"] {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    width: 80%;
+    max-width: 300px;
+    outline: none;
 }
 
-.hero-form input {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  outline: none;
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
 }
 
-.hero-form button {
-  width: 100%;
-  padding: 12px;
-  background: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
+button:hover {
+    background: linear-gradient(45deg, #00f2fe, #4facfe);
 }
 
-.hero-form button:hover {
-  background: #0056b3;
+.fade-in {
+    animation: fadeIn 1s ease forwards;
 }
 
-/* Footer */
-.footer {
-  background-color: #111;
-  color: #eee;
-  padding: 20px 0;
-  text-align: center;
-  font-size: 0.9rem;
+.fade-out {
+    animation: fadeOut 1s ease forwards;
 }
 
-.footer-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 20px;
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-/* Анимация */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
 }
 
-/* Мобильная адаптация */
+/* 📱 Адаптация для мобильных */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    #timer {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    input#activation-code {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    button.btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    #final-message h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+/* --- Финальный блок --- */
+#final-message {
+    display: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    margin-top: 20px;
+    animation: fadeIn 1s ease forwards;
+}
+
 @media (max-width: 480px) {
-  .hero-content {
-    padding: 30px 20px;
-    max-width: 90%;
-  }
+    #final-message {
+        font-size: 18px;
+        padding: 15px;
+    }
+}
 
-  .hero-content h1 {
-    font-size: 1.3rem;
-  }
-
-  .hero-form input,
-  .hero-form button {
-    font-size: 0.95rem;
-  }
-
-  .footer {
-    font-size: 0.8rem;
-  }
+canvas#fireworks {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
 }
