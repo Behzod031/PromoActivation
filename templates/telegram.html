@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegramga o'tish</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.3">
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '753178470994975');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=753178470994975&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('/static/img/background.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Arial', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      position: relative;
+    }
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+    .content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+    }
+    .message {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px 30px;
+      border-radius: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      display: inline-block;
+      color: #ffffff;
+    }
+    .button {
+      display: inline-block;
+      padding: 18px 40px;
+      font-size: 22px;
+      background: linear-gradient(45deg, #0088cc, #00aaff);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .button:hover {
+      background: linear-gradient(45deg, #00aaff, #0088cc);
+      transform: scale(1.05);
+    }
+    @media (max-width: 768px) {
+      .message {
+        font-size: 22px;
+      }
+      .button {
+        padding: 15px 30px;
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="message">
+      Turar joy majmualari haqida ma’lumot olish uchun pastdagi tugmani bosing 😊<br>
+    </div>
+    <br>
+    <!-- Deep link с client_id (Jinja2) -->
+<a href="https://t.me/XonSaroy_apartment_bot?start={{ utm }}" class="button" target="_blank">
+  Telegramga o'tish
+</a>
+  </div>
+</body>
+</html>
