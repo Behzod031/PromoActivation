@@ -1,42 +1,53 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chegirma Aksiyasi</title>
-
-    <!-- ✅ Обновлённое подключение CSS с v=3 -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v=3) }}">
-
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qo‘shimcha ma’lumot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.3">
+  <!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '753178470994975');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=753178470994975&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
-    <div class="container">
-
-        <!-- Заголовок -->
-        <div id="heading">
-            <h1>Siz 1m²ga qo'shimcha chegirma egasi bo'ldingiz!</h1>
-        </div>
-
-        <!-- Таймер -->
-        <div id="timer"></div>
-
-        <!-- Кнопка участия -->
-        <button id="participate-btn" class="btn">Chegirmada ishtirok etish</button>
-
-        <!-- Активация кода -->
-        <div id="activate-section" style="display:none;">
-            <input type="text" id="activation-code" placeholder="Kodni kiriting!">
-            <button id="activate-btn" class="btn">Chegirmadan Foydalanish</button>
-        </div>
-
-        <!-- Финальное сообщение -->
-        <div id="final-message" style="display:none;">
-            <h2>Chegirmadan foydalanganingiz uchun katta rahmat!</h2>
-        </div>
-
+  <header class="hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>
+          Qo‘shimcha ma’lumot<br>
+          uchun shaklni to‘ldiring
+        </h1>
+        <form method="POST" action="/" class="hero-form">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Ismingiz" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="Telefon raqamingiz" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="city" placeholder="Shahringiz yoki davlatingiz" required>
+          </div>
+          <button type="submit">Yuborish</button>
+        </form>
+      </div>
     </div>
-
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </header>
+  <footer class="footer">
+    <div class="footer-container"></div>
+  </footer>
 </body>
 </html>
