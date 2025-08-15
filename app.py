@@ -14,7 +14,7 @@ creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPE
 client = gspread.authorize(creds)
 
 spreadsheet = client.open("Xonsaroy_Online_Chat")
-worksheet = spreadsheet.worksheet("ADS")  # Сохраняем заявки только в этот лист
+worksheet = spreadsheet.worksheet("DV360")  # Сохраняем заявки только в этот лист
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
